@@ -7,18 +7,22 @@
 Control is a ??? game
 
 ### Frontend Made Using
-- Typescript
-- React
-- React Router
-- Mantine
+
+-   Typescript
+-   React
+-   React Router
+-   Mantine
 
 ### Backend Made Using
-- Typescript
-- Colyseus
+
+-   Typescript
+-   Colyseus
 
 ### Hosting Done by
-- Colyseus Arena
-- Firebase Hosting
 
-### Code Formatting Done with 
-- Prettier
+-   Colyseus Arena
+-   Firebase Hosting
+
+### Code Formatting Done with
+
+-   Prettier

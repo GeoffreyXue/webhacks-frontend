@@ -1,5 +1,3 @@
 export default function NoMatch() {
-    return (
-        <div>Nothing here</div>
-    )
+    return <div>Nothing here</div>;
 }
