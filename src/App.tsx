@@ -27,9 +27,7 @@ export default function App() {
                 <Router>
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path='/room'>
-                            <Route path=':id' element={<Room />} />
-                        </Route>
+                        <Route path='/room' element={<Room />} />
                         <Route path='*' element={<NoMatch />} />
                     </Routes>
                 </Router>
