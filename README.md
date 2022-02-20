@@ -3,6 +3,8 @@
   <img src="./public/logo192.png" style="position:absolute; right:0"></img>
 </div>
 
+# [Play the game!](https://webhacks-c20a6.web.app/)
+
 #### Made by Geoffrey Xue
 
 Flipgrid is a fast-paced multiplayer game.
