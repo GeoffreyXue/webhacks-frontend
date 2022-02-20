@@ -47,7 +47,8 @@ export default function Home() {
                     Flipgrid
                 </Text>
                 <FadeIn>
-                    <Title>A fast-paced multiplayer game</Title>
+                    <Title>A fast-paced multiplayer game.</Title>
+                    <Title>Flip the tiles to your team's side!</Title>
                     <Center>
                         <form
                             onSubmit={form.onSubmit((values) => {
