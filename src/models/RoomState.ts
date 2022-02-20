@@ -1,4 +1,4 @@
-import { Schema, ArraySchema, Context, type } from "@colyseus/schema";
+import { Schema, ArraySchema, Context, type } from '@colyseus/schema';
 
 export enum TeamColor {
     Red,
@@ -49,14 +49,13 @@ export class TileArray extends Schema {
 export enum GameState {
     Waiting,
     Playing,
-    Ended
+    Ended,
 }
 
 export interface IRoomState extends Schema {
     playerStates: PlayerState[];
-  
-    gameState: GameState;
-  
-    tileStates: TileArray[];
 
+    gameState: GameState;
+
+    tileStates: TileArray[];
 }

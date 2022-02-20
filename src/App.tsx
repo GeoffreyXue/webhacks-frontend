@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { MantineProvider, ColorSchemeProvider, ColorScheme, AppShell, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+    MantineProvider,
+    ColorSchemeProvider,
+    ColorScheme,
+    AppShell,
+    useMantineColorScheme,
+    useMantineTheme,
+} from '@mantine/core';
 import { useHotkeys, useLocalStorageValue } from '@mantine/hooks';
 
 import Home from './routes/Home/Home';
@@ -24,13 +31,34 @@ export default function App() {
         <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
             <MantineProvider theme={{ colorScheme }}>
                 <ThemeButton />
-                    <Router>
-                        <Routes>
-                            <Route path='/' element={<Shell><Home /></Shell>} />
-                            <Route path='/room' element={<Shell><Room /></Shell>} />
-                            <Route path='*' element={<Shell><NoMatch /></Shell>} />
-                        </Routes>
-                    </Router>
+                <Router>
+                    <Routes>
+                        <Route
+                            path='/'
+                            element={
+                                <Shell>
+                                    <Home />
+                                </Shell>
+                            }
+                        />
+                        <Route
+                            path='/room'
+                            element={
+                                <Shell>
+                                    <Room />
+                                </Shell>
+                            }
+                        />
+                        <Route
+                            path='*'
+                            element={
+                                <Shell>
+                                    <NoMatch />
+                                </Shell>
+                            }
+                        />
+                    </Routes>
+                </Router>
             </MantineProvider>
         </ColorSchemeProvider>
     );
@@ -48,13 +76,14 @@ function Shell({ children }: ShellProps) {
         <AppShell
             styles={{
                 main: {
-                    background: colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+                    background:
+                        colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
                     padding: 0,
-                    height: '100vh'
-                }
+                    height: '100vh',
+                },
             }}
         >
             {children}
         </AppShell>
-    ); 
+    );
 }

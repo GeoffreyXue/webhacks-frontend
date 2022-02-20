@@ -36,16 +36,16 @@ export default function Home() {
     return (
         <Container style={{ height: '100vh' }}>
             <Center style={{ height: '100%', flexDirection: 'column' }}>
-            <Text
-                component="span"
-                align="center"
-                variant="gradient"
-                gradient={{ from: 'red', to: 'indigo', deg: 60 }}
-                weight={700}
-                style={{fontSize: 90}}
-            >
-                Flipgrid
-            </Text>
+                <Text
+                    component='span'
+                    align='center'
+                    variant='gradient'
+                    gradient={{ from: 'red', to: 'indigo', deg: 60 }}
+                    weight={700}
+                    style={{ fontSize: 90 }}
+                >
+                    Flipgrid
+                </Text>
                 <FadeIn>
                     <Title>A fast-paced multiplayer game</Title>
                     <Center>
@@ -62,13 +62,13 @@ export default function Home() {
                                 flexDirection: 'column',
                                 justifyContent: 'center',
                                 gap: 10,
-                                marginTop: 10 
+                                marginTop: 10,
                             }}
                         >
                             <TextInput
                                 // variant='unstyled'
                                 size='xl'
-                                radius="lg"
+                                radius='lg'
                                 placeholder='Name'
                                 {...form.getInputProps('name')}
                             />
@@ -76,16 +76,18 @@ export default function Home() {
                             <TextInput
                                 // variant='unstyled'
                                 size='xl'
-                                radius="lg"
+                                radius='lg'
                                 placeholder='Room ID'
                                 {...form.getInputProps('roomID')}
                             />
 
-                            <Button type='submit' radius='lg'
+                            <Button
+                                type='submit'
+                                radius='lg'
                                 style={{
                                     width: 300,
                                     height: 50,
-                                    fontSize: 24
+                                    fontSize: 24,
                                 }}
                             >
                                 {buttonString}
