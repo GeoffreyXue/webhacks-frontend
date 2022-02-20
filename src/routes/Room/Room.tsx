@@ -20,7 +20,6 @@ export default function Room() {
     const [time, setTime] = useState<number>(60);
 
     const [room, setRoom] = useState<Colyseus.Room<IRoomState>>();
-
     const client = new Colyseus.Client(`ws://zuwxia.us-east-vin.colyseus.net:2567`);
 
     useEffect(() => {
@@ -80,6 +79,10 @@ export default function Room() {
         room?.send('flip', { x, y, team: player?.team });
     }
 
+    function leaveGame() {
+        room?.leave();
+    }
+
     function render() {
         switch (status) {
             default:
@@ -94,7 +97,7 @@ export default function Room() {
                     />
                 );
             case GameState.Ended:
-                return <EndMode player={player} tileArrays={tiles} />;
+                return <EndMode player={player} tileArrays={tiles} leaveGame={leaveGame}/>;
         }
     }
 

@@ -6,9 +6,10 @@ import { PlayerState, TeamColor, TileArray, TileState } from '../../models/RoomS
 interface EndModeProps {
     player: PlayerState | undefined;
     tileArrays: TileArray[];
+    leaveGame: () => void;
 }
 
-export default function EndMode({ player, tileArrays }: EndModeProps) {
+export default function EndMode({ player, tileArrays, leaveGame }: EndModeProps) {
     const navigate = useNavigate();
 
     const [blueCount, setBlueCount] = useState(0);
@@ -43,6 +44,7 @@ export default function EndMode({ player, tileArrays }: EndModeProps) {
             {renderWinner()}
             <Button
                 onClick={() => {
+                    leaveGame();
                     navigate('/');
                 }}
             >
