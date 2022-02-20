@@ -97,7 +97,7 @@ export default function Room() {
                     />
                 );
             case GameState.Ended:
-                return <EndMode player={player} tileArrays={tiles} leaveGame={leaveGame}/>;
+                return <EndMode player={player} tileArrays={tiles} leaveGame={leaveGame} />;
         }
     }
 

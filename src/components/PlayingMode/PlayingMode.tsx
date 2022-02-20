@@ -1,4 +1,4 @@
-import { Center, Grid, Title } from '@mantine/core';
+import { Badge, Center, Grid, Title, useMantineTheme } from '@mantine/core';
 
 import { PlayerState, TeamColor, TileArray } from '../../models/RoomState';
 
@@ -13,13 +13,23 @@ interface PlayingModeProps {
 }
 
 export default function PlayingMode({ player, time, tileArrays, flipTile }: PlayingModeProps) {
+    const theme = useMantineTheme();
+
     useEffect(() => {
         console.log('tiles', tileArrays);
     }, []);
 
     return (
         <Center style={{ padding: 0, height: '100%', flexDirection: 'column' }}>
-            <Title>Team: {player?.team === TeamColor.Blue ? 'Blue' : 'Red'}</Title>
+            <Title
+                style={{
+                    color:
+                        player?.team == TeamColor.Blue ? theme.colors.blue[6] : theme.colors.red[6],
+                }}
+            >
+                Team {player?.team === TeamColor.Blue ? 'Blue' : 'Red'}
+            </Title>
+
             <Title>Time Left: {time} seconds</Title>
             <div
                 style={{
@@ -28,7 +38,7 @@ export default function PlayingMode({ player, time, tileArrays, flipTile }: Play
                     gridTemplateRows: 'repeat(10, 1fr)',
                     height: '40vw',
                     width: '40vw',
-                    gap: 1,
+                    gap: 5,
                 }}
             >
                 {tileArrays.map((a, r) => {
