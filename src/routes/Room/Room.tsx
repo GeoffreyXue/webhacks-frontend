@@ -21,7 +21,7 @@ export default function Room() {
 
     const [room, setRoom] = useState<Colyseus.Room<IRoomState>>();
 
-    const client = new Colyseus.Client(`ws://localhost:2567`);
+    const client = new Colyseus.Client(`ws://zuwxia.us-east-vin.colyseus.net:2567`);
 
     useEffect(() => {
         client
