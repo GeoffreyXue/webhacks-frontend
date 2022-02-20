@@ -1,0 +1,51 @@
+import { Schema, ArraySchema, Context, type } from "@colyseus/schema";
+
+enum TeamColor {
+    Red,
+    Blue,
+}
+
+export class PlayerState extends Schema {
+    @type('string')
+    id: string;
+
+    @type('string')
+    name: string;
+
+    @type('number')
+    team: TeamColor;
+
+    constructor(id: string, name: string, team: TeamColor) {
+        super();
+
+        this.id = id;
+        this.name = name;
+        this.team = team;
+    }
+}
+
+export class TileState extends Schema {
+    @type('number')
+    color: TeamColor;
+
+    constructor(color: TeamColor) {
+        super();
+
+        this.color = color;
+    }
+}
+
+export enum GameState {
+    Waiting,
+    Playing,
+    Ended
+}
+
+export interface IRoomState extends Schema {
+    playerStates: PlayerState[];
+  
+    gameState: GameState;
+  
+    tileStates: TileState[][];
+
+}
