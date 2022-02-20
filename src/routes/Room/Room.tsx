@@ -4,51 +4,72 @@ import { useLocation } from 'react-router-dom';
 import * as Colyseus from 'colyseus.js';
 
 import { RoomProps } from '../../models/RoomProps';
-import { IRoomState, PlayerState } from '../../models/RoomState';
+import { IRoomState, PlayerState, TileArray, GameState, TeamColor } from '../../models/RoomState';
 
 import WaitingMode from '../../components/WaitingMode/WaitingMode';
+import PlayingMode from '../../components/PlayingMode/PlayingMode';
 
 export default function Room() {
     const { name, roomID }: RoomProps = useLocation().state as RoomProps;
+    const [team, setTeam] = useState<TeamColor>();
     const [players, setPlayers] = useState<PlayerState[]>([]);
-    // const [room, setRoom] = useState<Colyseus.Room<GameState> | undefined>(undefined);
+    const [tiles, setTiles] = useState<TileArray[]>([]);
+    const [status, setStatus] = useState<GameState>(GameState.Waiting);
+    const [room, setRoom] = useState<Colyseus.Room<IRoomState>>();
     const client = new Colyseus.Client(`ws://localhost:2567`);
 
     useEffect(() => {
-
-        function roomSetup(room: Colyseus.Room<IRoomState>) {
-            room.onStateChange((state) => {
-                console.dir(state);
-                setPlayers(state.playerStates);
-            });
-
-            // room.onMessage("message_type", (message) => {
-            //     console.log("received on", room.name, message);
-            // });
-
-            // room.onError((code, message) => {
-            //     console.log("couldn't join", room.name);
-            // });
-
-            // room.onLeave((code) => {
-            //     console.log("left", room.name);
-            // });
-        }
-
-        client.joinOrCreate("game", {name})
-        .then(r => {
-            const room = r as Colyseus.Room<IRoomState>;
+        client.joinOrCreate<IRoomState>("game", {name})
+        .then(room => {
+            setRoom(room);
             console.log(room.sessionId, "joined", room.name);
-            console.log(room);
             
-            roomSetup(room);
+            // room.onStateChange((state) => {
+            //     console.log("State changed");
+            //     console.dir(state.playerStates.map(p => p.name));
+            //     setTiles(state.tileStates);
+            //     setStatus(state.gameState);
+            // });
+
+            room.onMessage("player-join", (newPlayers: PlayerState[]) => {
+                console.log("player joined");
+                setTeam(newPlayers.find(p => p.id == room.sessionId)?.team ?? TeamColor.Blue);
+                setPlayers(newPlayers);
+            })
+
+            room.onMessage("player-leave", (newPlayers: PlayerState[]) => {
+                console.log("player left");
+                setPlayers(newPlayers);
+            })
+
+            room.onMessage("game-start", (gameState: GameState) => {
+                console.log("Game started");
+                setStatus(gameState);
+            })
         })
         .catch(e => {
             console.log("JOIN ERROR", e);
         });
     }, []);
 
-    return (
-        <WaitingMode players={players} startGame={() => {}}/>
-    );
+    function startGame() {
+        room?.send("game-start", {});
+    }
+
+    function flipTile(x: number, y: number) {
+        room?.send("flip", {x, y, team})
+    }
+
+    function render() {
+        switch (status) {
+            case GameState.Waiting:
+                return <WaitingMode players={players} startGame={startGame}/>
+            case GameState.Playing:
+                return <PlayingMode flipTile={flipTile}/>
+            default:
+                return <div>Unexpected/unimplemented location</div>
+        }
+    }
+
+    return render();
 }

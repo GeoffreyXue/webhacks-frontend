@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { Container, Center, Card, Title, SimpleGrid, Button, Text } from '@mantine/core';
+import { Container, Center, Card, Grid, Title, SimpleGrid, Button, Text } from '@mantine/core';
 
-import { PlayerState } from '../../models/RoomState';
+import FadeIn from 'react-fade-in';
+
+import { PlayerState, TeamColor } from '../../models/RoomState';
 
 interface WaitingModeProps {
     players: PlayerState[];
@@ -9,11 +11,14 @@ interface WaitingModeProps {
 }
 
 export default function WaitingMode({ players, startGame }: WaitingModeProps) {
-    useEffect(() => {}, []);
+    useEffect(() => {
+        console.log("Players updated");
+        console.log(players.map(p => p.name));
+    }, [players]);
 
     return (
-        <Container style={{ height: '100vh'}}>
-            <Center style={{ flexDirection: 'column', padding: 100 }}>
+        <div style={{ height: '100vh'}}>
+            <Center style={{ flexDirection: 'column', paddingTop: 100 }}>
                 <Button 
                     style={{
                         width: 300,
@@ -25,23 +30,55 @@ export default function WaitingMode({ players, startGame }: WaitingModeProps) {
                 >
                     Start Game!
                 </Button>
-                <Title style={{ marginBottom: 10}}>Players</Title>
-                <SimpleGrid
-                    cols={4}
-                    spacing="lg"
-                    breakpoints={[
-                        { maxWidth: 980, cols: 3, spacing: 'md' },
-                        { maxWidth: 755, cols: 2, spacing: 'sm' },
-                        { maxWidth: 600, cols: 1, spacing: 'sm' },
-                    ]}
-                >
-                    {players.map(player => (
-                        <Card shadow="sm" padding="lg" radius="md" key={player.id}>
-                            <Text weight="600" >{player.name}</Text>
-                        </Card>
-                    ))}
-                </SimpleGrid>
+                <Title style={{ marginBottom: 10}}>Players ({players.length} / 12)</Title>
+                <Grid grow style={{width: '75vw'}}>
+                    <Grid.Col span={5}>
+                        <Text size='xl' color='blue'>Blue</Text>
+                        <SimpleGrid
+                            cols={3}
+                            spacing="sm"
+                            breakpoints={[
+                                { maxWidth: 1500, cols: 2, spacing: 'sm' },
+                                { maxWidth: 1000, cols: 1, spacing: 'sm' },
+                                { maxWidth: 600, cols: 1, spacing: 'sm' },
+                            ]}
+                        >
+                            {players.filter(player => player.team == TeamColor.Blue).map(player => (
+                                <FadeIn>
+                                    <Card shadow="sm" padding="md" radius="md" key={player.id}>
+                                        <Text align='center' weight="600" >{player.name}</Text>
+                                    </Card>
+                                </FadeIn>
+                            ))}
+                        </SimpleGrid>
+                    </Grid.Col>
+                    <Grid.Col span={1}>
+                        
+                    </Grid.Col>
+                    <Grid.Col span={5}>
+                        <Text align='right' size='xl' color='red'>Red</Text>
+                        <SimpleGrid
+                            cols={3}
+                            spacing="sm"
+                            breakpoints={[
+                                { maxWidth: 1500, cols: 2, spacing: 'sm' },
+                                { maxWidth: 1000, cols: 1, spacing: 'sm' },
+                                { maxWidth: 600, cols: 1, spacing: 'sm' },
+                            ]}
+                            style={{gridAutoFlow: 'dense', direction: 'rtl'}}
+                        >
+                            {players.filter(player => player.team == TeamColor.Red).map(player => (
+                                <FadeIn>
+                                <Card shadow="sm" padding="lg" radius="md" key={player.id}>
+                                    <Text align='center' weight="600" >{player.name}</Text>
+                                </Card>
+                                </FadeIn>   
+                            ))}
+                        </SimpleGrid>
+                    </Grid.Col>
+                </Grid>
+
             </Center>
-        </Container>
+        </div>
     );
 }

@@ -49,7 +49,8 @@ function Shell({ children }: ShellProps) {
             styles={{
                 main: {
                     background: colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-                    padding: 0
+                    padding: 0,
+                    height: '100vh'
                 }
             }}
         >

@@ -1,6 +1,6 @@
 import { Schema, ArraySchema, Context, type } from "@colyseus/schema";
 
-enum TeamColor {
+export enum TeamColor {
     Red,
     Blue,
 }
@@ -35,6 +35,17 @@ export class TileState extends Schema {
     }
 }
 
+export class TileArray extends Schema {
+    @type([TileState])
+    tiles: TileState[];
+
+    constructor() {
+        super();
+
+        this.tiles = [];
+    }
+}
+
 export enum GameState {
     Waiting,
     Playing,
@@ -46,6 +57,6 @@ export interface IRoomState extends Schema {
   
     gameState: GameState;
   
-    tileStates: TileState[][];
+    tileStates: TileArray[];
 
 }
