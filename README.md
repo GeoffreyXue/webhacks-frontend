@@ -1,10 +1,12 @@
 <div align="center">
-<h1><b>Control</b></h1>
+<h1><b>Flipgrid</b></h1>
 </div>
 
-#### Made by: Geoffrey Xue
+#### Made by Geoffrey Xue
 
-Control is a ??? game
+Flipgrid is a fast-paced multiplayer game.
+
+Join as Team <span style="color:red">**Red**</span> or <span style="color:blue">**Blue**</span>, flip as many tiles to your color as you can until 60 is over!
 
 ### Frontend Made Using
 
