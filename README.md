@@ -3,9 +3,14 @@
   <img src="./public/logo192.png" style="position:absolute; right:0"></img>
 </div>
 
-# [Play the game!](https://webhacks-c20a6.web.app/)
+
+### [Presentation](https://docs.google.com/presentation/d/1G6qJcMV2SSgjSeOZi6TuSGoqO7umbDXtqPfoY4qPeVE/edit?usp=sharing)
+🥇 First place at Webhacks 2022, hosted by [WebDev UW](https://github.com/WebDev-UW) and Sub-Zero Group!
+
+## [Play the game!](https://webhacks-c20a6.web.app/) - Note : Check out presentation instructions on how to enable insecure content first!
 
 #### Made by Geoffrey Xue
+
 
 Flipgrid is a fast-paced multiplayer game.
 
