@@ -5,7 +5,7 @@
 
 
 ### [Presentation](https://docs.google.com/presentation/d/1G6qJcMV2SSgjSeOZi6TuSGoqO7umbDXtqPfoY4qPeVE/edit?usp=sharing)
-🥇 First place at Webhacks 2022, hosted by [WebDev UW](https://github.com/WebDev-UW) and Sub-Zero Group!
+🥇 First place at Webhacks 2022, hosted by [WebDev UW](https://github.com/WebDev-UW) and sponsored by Sub-Zero Group!
 
 ## [Play the game!](https://webhacks-c20a6.web.app/) - Note : Check out presentation instructions on how to enable insecure content first!
 
